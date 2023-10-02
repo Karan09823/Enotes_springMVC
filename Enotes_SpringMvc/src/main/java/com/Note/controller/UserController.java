@@ -49,7 +49,7 @@ public class UserController {
 		//now sending data from controller to view i.e notes
 		m.addAttribute("list", notes);
 		
-;		return "view_notes";
+		return "view_notes";
 	}
 	
 	//updating the notes
