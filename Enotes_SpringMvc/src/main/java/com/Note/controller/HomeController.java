@@ -18,19 +18,19 @@ public class HomeController {
 	@Autowired
 	private UserDao userDao;
 	
-	@RequestMapping(path="/home")
+	@RequestMapping("/home")
 	public String home() {
 		
 		return "home";
 		
 	}
 	
-	@RequestMapping(path="/login")
+	@RequestMapping("/login")
 	public String login() {
 		return "login";
 	}
 	
-	@RequestMapping(path="/register")
+	@RequestMapping("/register")
 	public String register() {
 		return "register";
 	}
@@ -57,7 +57,7 @@ public class HomeController {
 		
 		if(user!=null) {
 			session.setAttribute("userObj", user);
-			return "redirect:/home";//************
+			return "home";//************
 		}else {
 			session.setAttribute("msg", "Invalid mail or password !" );
 			return "redirect:/login";
