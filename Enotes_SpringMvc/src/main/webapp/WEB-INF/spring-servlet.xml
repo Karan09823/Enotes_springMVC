@@ -21,11 +21,10 @@
 		mapping="/resources/**" />
 
 	<context:component-scan base-package="com.Note" />
-	<tx:annotation-driven /><!--sara annotation ka es driver kae help sae access 
-		hoga -->
 
-	<!--modal view controller mae viewresolver sae pata lage kon sa page show 
-		karna hai -->
+
+	<!--In MVC  first viewresolver is encountered which helps in determining which opertion is 
+	to be done like controller or view-->
 
 	<bean name="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -34,11 +33,13 @@
 
 	</bean>
 
+		<tx:annotation-driven /><!--important when using annotations -->
+
 
 	<!-- first connection building b/w client and database uing jdbc then use 
 		orm tool to not write sql query -->
 
-	<bean name="d"
+	<bean name="ds"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"
 			value="com.mysql.jdbc.Driver" />
@@ -49,12 +50,11 @@
 	</bean>
 
 
-	<!--second hibernate ka bean ,uska baad jdbc ka bean hibernate kae bean 
-		sae connect karna hai -->
+	<!--session factory referencing jdbc -->
 
 	<bean name="factory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-		<property name="dataSource" ref="d" />
+		<property name="dataSource" ref="ds" />
 
 
 		<property name="hibernateProperties">
@@ -70,13 +70,13 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.Note.entity.User</value>
-                <value>com.Note.entity.Notes</value>
+                                <value>com.Note.entity.Notes</value>
 			</list>
 		</property>
 	</bean>
 
 	<!-- for using hibernate we need hibernate template and its transaction 
-		template -->
+		template therefore both are referencing to factory  -->
 
 	<bean name="hibernateTemplate"
 		class="org.springframework.orm.hibernate5.HibernateTemplate">
@@ -89,7 +89,7 @@
 	</bean>
 
 
-
+           <!--Use of interceptor acting as security -->
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/user/*" />
