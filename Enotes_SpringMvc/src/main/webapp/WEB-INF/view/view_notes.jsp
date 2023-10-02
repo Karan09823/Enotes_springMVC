@@ -18,7 +18,7 @@
 			<c:remove var="msg" />
 		</c:if>
 		<div class="row">
-			<c:forEach items="${list}" var="n"><!-- //********** -->
+			<c:forEach items="${list}" var="n"><!-- //********** important -->
 				<div class="col-md-10 offset-md-1 mt-2">
 					<div class="card">
 						<div class="card-body">
@@ -40,6 +40,8 @@
 					</div>
 				</div>
 			</c:forEach>
+	   </div>	
+      </div>
 			
 </body>
 </html>
