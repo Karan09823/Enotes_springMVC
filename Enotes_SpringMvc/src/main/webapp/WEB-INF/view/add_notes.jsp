@@ -23,7 +23,7 @@
 						</c:if>
 					</div>
 					<div class="card-body">
-						<form action="saveNotes" method="Post">
+						<form action="saveNotes" method="post">
 							<div class="mb-3">
 								<label>Enter Title</label> <input type="text" name="title"
 									class="form-control">
